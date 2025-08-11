@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isLoading = false;
   bool _obscurePassword = true;
 
-  final String baseUrl = 'https://sinara.space';
+  final String baseUrl = 'http://localhost:8000';
 
   @override
   void initState() {

@@ -17,13 +17,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _alamatController = TextEditingController();
   final _umurController = TextEditingController();
   final _phoneController = TextEditingController();
+  final _fasilitasKesehatanController = TextEditingController(); // ✅ TAMBAHAN
   
   bool _isLoading = false;
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
 
   // Ganti dengan base URL Laravel Anda
-  final String baseUrl = 'https://sinara.space'; // atau IP server Anda
+  final String baseUrl = 'http://localhost:8000'; // atau IP server Anda
 
   Future<void> _register() async {
     if (!_formKey.currentState!.validate()) {
@@ -49,6 +50,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           'alamat': _alamatController.text.trim(),
           'umur': int.parse(_umurController.text),
           'phone': _phoneController.text.trim(),
+          'fasilitas_kesehatan': _fasilitasKesehatanController.text.trim(), // ✅ TAMBAHAN
         }),
       );
 
@@ -94,6 +96,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _alamatController.dispose();
     _umurController.dispose();
     _phoneController.dispose();
+    _fasilitasKesehatanController.dispose(); // ✅ TAMBAHAN
     super.dispose();
   }
 
@@ -328,6 +331,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         }
                         if (value.length < 10) {
                           return 'Nomor telepon minimal 10 digit';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 16),
+
+                    // ✅ FASILITAS KESEHATAN FIELD - TAMBAHAN BARU
+                    TextFormField(
+                      controller: _fasilitasKesehatanController,
+                      decoration: InputDecoration(
+                        labelText: 'Fasilitas Kesehatan',
+                        hintText: 'Contoh: Puskesmas Ambon, RSUD Dr. M. Haulussy',
+                        prefixIcon: Icon(Icons.local_hospital),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Fasilitas kesehatan tidak boleh kosong';
+                        }
+                        if (value.length < 3) {
+                          return 'Nama fasilitas kesehatan minimal 3 karakter';
                         }
                         return null;
                       },

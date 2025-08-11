@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
 
-  final String baseUrl = 'https://sinara.space';
+  final String baseUrl = 'http://localhost:8000';
 
   @override
   void initState() {

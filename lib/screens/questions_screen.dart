@@ -22,7 +22,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   ScrollController _scrollController = ScrollController();
   bool _isHeaderVisible = true;
 
-  final String baseUrl = 'https://sinara.space';
+  final String baseUrl = 'http://localhost:8000';
 
   @override
   void initState() {
